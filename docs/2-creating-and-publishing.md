@@ -12,7 +12,7 @@ To create a new Frag Order, click the "Create New Frag Order" button on the home
 
 On the "New Frag Order" screen, you can give your Frag Order a name. If no name is provided, the name will be populated from the .miz file name.
 
-The Discord Server field allows for the Frag Order to be associated with a given Discord Server that you are a member of. This will be used for managing planning permissions. For more information, see the [Planning](./5-planning.md) section of the docs.
+The Discord Server field allows for the Frag Order to be associated with a given Discord Server that you are a member of. This will be used for managing planning permissions. For more information, see the [Planning](./6-managing-planners.md) section of the docs.
 
 Drag and drop your .miz file into designated area, or click the area to bring up your file upload interface.
 
