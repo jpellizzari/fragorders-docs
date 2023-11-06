@@ -24,13 +24,10 @@ import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-<Box my={2}>
-    <Alert severity="warning">
-        <Typography fontWeight={600}>Always version and save your .miz in the DCS Mission Editor!</Typography>
-        
-        To avoid .miz file corruption errors errors, you should always save the Frag Orders output .miz as a new version of your mission. 
-        
-        This will clean any bad data inputs that users may have set, and ensure any version compatibilty issues are caught before uploading to your multiplayer server.
-    </Alert>
-</Box>
+:::warning
+**Always version and save your .miz in the DCS Mission Editor!**
 
+To avoid .miz file corruption errors errors, you should always save the Frag Orders output .miz as a new version of your mission. 
+        
+This will clean any bad data inputs that users may have set, and ensure any version compatibilty issues are caught before uploading to your multiplayer server.
+:::

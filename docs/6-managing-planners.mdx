@@ -54,16 +54,11 @@ Note that any additional users you want to add will only be able to select from 
 
 Removing a planning rule will disable planning input for that user, but will not delete their plan(s). Once a plan has been submitted, you will see the "Planning Status" table get populated. From here, a mission creator can choose to remove a users plan, which will ensure it does not get applied to the mission.
 
+:::warning
+**Removing a plan is a descructive action!**
 
-import Alert from '@mui/material/Alert'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-
-<Box my={2}>
-    <Alert severity="warning">
-        <Typography fontWeight={600}>Removing a plan is a descructive action!</Typography> Please let your planners know that you will be removing their plan, as any data entry they have done will be deleted permanently.
-    </Alert>
-</Box>
+Please let your planners know that you will be removing their plan, as any data entry they have done will be deleted permanently.
+:::
 
 All published coalitions can have planning rules configured, and the individual coalition publishes will not show the opposing coalition's plan.
 

@@ -59,13 +59,13 @@ import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-<Box my={2}>
-    <Alert style={{paddingBottom: 0 }} severity="warning">
-        Publishing both Coalitions will disable certain features of Frag Orders. For example, Kneeboard publishing will be disabled when both Red and Blue coalitions are published.
+:::warning
+**Publishing both Coalitions will disable certain features of Frag Orders.**
 
-        This is a limitation of DCS where the kneeboards in the mission cannot be made coalition specfic.
-    </Alert>
-</Box>
+For example, Kneeboard publishing will be disabled when both Red and Blue coalitions are published.
+
+This is a limitation of DCS where the kneeboards in the mission cannot be made coalition specfic.
+:::
 
 
 

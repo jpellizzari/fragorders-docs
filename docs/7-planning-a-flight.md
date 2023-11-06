@@ -40,15 +40,9 @@ Planners can also enter other data ahead of the mission that will be present in 
 
 Inside the "Data Entry" dialog window, click the "Radios" tab to bring up the preset entry form. Planners can input their desired frequencies that will be writting to the .miz file in their aircraft, as well as populated on any auto-generated kneeboards.
 
-import Alert from '@mui/material/Alert'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-
-<Box my={2}>
-    <Alert style={{paddingBottom: 0 }} severity="info">
-        The "Radios" will be disabled for planners if the mission creator has disabled "Allow planners to set frequencies" on the frag order administration side of the app.
-    </Alert>
-</Box>
+:::warning
+The "Radios" will be disabled for planners if the mission creator has disabled "Allow planners to set frequencies" on the frag order administration side of the app.
+:::
 
 ![Radio preset input for planners](../static/img/plan-7.png)
 
@@ -57,7 +51,6 @@ The input for radio presets can be saved to file to be re-used in the future, or
 It is also possible to copy frequencies from an existing group. This reduces the risk of typos and cuts down on repetitive data entry. <b>Radio frequencies can only be copied between groups of the same airframe type. For example: only groups of F-16Cs can copy frequencies between each other</b>
 
 ![Preset import dropdown](../static/img/plan-8.png)
-
 
 ### Setting laser codes
 
