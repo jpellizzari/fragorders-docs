@@ -50,4 +50,8 @@ Once the second coalition has been published, the Publish Status widget will cha
 
 ![Publish Coalition Objects](../static/img/create_8.png)
 
+Note that publishing both Coalitions will disable certain features of Frag Orders. For example, Kneeboard publishing will be diabled when both Red and Blue coalitions are publish.
+
+This is a limitation of DCS where the kneeboards in the mission cannot be made coalition specfic.
+
 
