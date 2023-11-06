@@ -24,6 +24,10 @@ Once your file is uploaded, Frag Orders will parse your .miz file, and you will 
 
 Click the Submit button to save the Frag Order. Note that your Frag Order is still private and only visible to you at this stage.
 
+### Updating an existing miz file
+
+You can re-upload a or updated miz file at any time by clicking the <b>Update Mission File</b> button. When you upload a new .miz file, your published Frag Order will be automatically updated with the new mission data. Frag Orders does not change this file until the "Run Jobs and Download" button is clicked. See the [Export a mission file section](./8-export.md) for more information.
+
 ## Publish options
 
 To publish your Frag Order for public consumption, navigate to the "Publish" tab of the Frag Order.
@@ -50,8 +54,22 @@ Once the second coalition has been published, the Publish Status widget will cha
 
 ![Publish Coalition Objects](../static/img/create_8.png)
 
-Note that publishing both Coalitions will disable certain features of Frag Orders. For example, Kneeboard publishing will be diabled when both Red and Blue coalitions are publish.
 
-This is a limitation of DCS where the kneeboards in the mission cannot be made coalition specfic.
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+<Box my={2}>
+    <Alert style={{paddingBottom: 0 }} severity="warning">
+        Publishing both Coalitions will disable certain features of Frag Orders. For example, Kneeboard publishing will be disabled when both Red and Blue coalitions are published.
+
+        This is a limitation of DCS where the kneeboards in the mission cannot be made coalition specfic.
+    </Alert>
+</Box>
+
+
+
+
+
 
 

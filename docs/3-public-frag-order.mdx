@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Using a Frag Order
+# Viewing a Frag Order
 
 ## A Tour of a Frag Order
 
@@ -39,7 +39,17 @@ The You can enable and disable layers using the layer controls. In this example,
 
 The drawing tools allow for basic marking on the map. This can useful when determining distances, gathering points of interest, or marking points of interest.
 
-Note that all drawings are only visible locally. They will not be saved with the Frag Order, and will be deleted if you refresh the page.
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+<Box my={2}>
+    <Alert severity="warning">
+        Note that all drawings are only visible locally. They will not be saved with the Frag Order, and will be deleted if you refresh the page.
+    </Alert>
+</Box>
+
+
 
 ![Drawing Example](../static/img/public-8.png)
 

@@ -14,7 +14,7 @@ There are currently four types of generated kneeboards:
 
 * <b>Airfield and Support Navigation Card:</b> this is a visualization of the available airfields and support assets that are in the mission. Navigation information as well as radio frequency data are automatically populated.
 
-* <b>Lineup Cards:</b> A lineup card is a quick overview of a group's mission and contains data like radio presents, waypoint location, laser codes, etc. In addition, planners can also add more notes to the kneeboard via the [data entry](./7-planning-a-flight.md) interface.
+* <b>Lineup Cards:</b> A lineup card is a quick overview of a group's mission and contains data like radio presents, waypoint location, laser codes, etc. In addition, planners can also add more notes to the kneeboard via the [data entry](./7-planning-a-flight.md#adding-notes) interface.
 
 * <b>Briefing Text</b>: This kneeboard will copy the briefing text of the mission into a kneeboard for easier access. This saves pilots from having to use the pause menu to look up important data from the mission briefing
 
