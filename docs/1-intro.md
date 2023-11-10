@@ -12,6 +12,8 @@ Frag Orders was created to allow for multiplayer DCS missions to be visualized, 
 * Cut down on the amount of briefing material that mission creators have to make
 * Add an element of mission planning to the simulation that would otherwise be difficult in a multiplayer context
 
+![Frag Order Tour](../static/img/intro-1.png)
+
 ## How does it work?
 
 Frag Orders works by parsing your .miz file, then modifying the mission data by applying various edits to the .miz data. These edits might include setting radio frequencies, applying user waypoints, and injecting kneeboards.
