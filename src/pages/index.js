@@ -1,10 +1,8 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 
 import Link from '@docusaurus/Link';
-import { Typography } from '@mui/material';
 import { Box } from '@mui/material/';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
@@ -28,7 +26,6 @@ function HomepageHeader() {
   );
 }
 
-
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -37,13 +34,16 @@ export default function Home() {
       description="Documentation for Frag Orders">
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
-
         <div className={styles.textContainer}>
           <Box m={1} marginBottom={4}>
-            <Typography textAlign="center" fontWeight={600} fontSize={18}>
+
+
+
+            <h2 style={{ textAlign: 'center' }}>
               For Mission Creators
-            </Typography>
+            </h2>
+
+
 
             <Box m={1}>
               <b>Publish your mission:</b> Frag Orders extracts mission data
@@ -58,13 +58,12 @@ export default function Home() {
             </Box>
             <Box m={1}>
               <b>Let the pilots plan:</b> Mission participants will be able
-              to drop waypoints, set radio frequencies, and add briefing
-              notes to their in-game kneeboards.
+              to drop waypoints, set radio frequencies, and set laser codes ahead of the mission, without asking the mission creator for manual changes.
             </Box>
             <Box marginTop={2}>
-              <Typography textAlign="center" fontWeight={600} fontSize={18}>
+              <h2 style={{ textAlign: 'center' }}>
                 For Mission Participants
-              </Typography>
+              </h2>
               <Box m={1}>
                 <b>Review the plan:</b> Start building your situational
                 awarness before the mission.
@@ -83,16 +82,20 @@ export default function Home() {
             </Box>
           </Box>
         </div>
-
-        <div className={styles.videoContainer}>
-          <iframe
-            className={styles.iframe}
-            src="https://www.youtube.com/embed/GquZeyn8qJs"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        </div>
+        <Box m={4}>
+          <div style={{ textAlign: 'center' }}>
+            <h2>Video Tutorial</h2>
+          </div>
+          <div className={styles.videoContainer}>
+            <iframe
+              className={styles.iframe}
+              src="https://www.youtube.com/embed/GquZeyn8qJs"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </Box>
       </main>
     </Layout>
   );
