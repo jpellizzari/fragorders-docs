@@ -4,6 +4,8 @@ sidebar_position: 8
 
 # Known Issues
 
+Below are some edge cases that can cause issues when using Frag Orders. Ideally these will be fixed in future versions of Frag Orders. For now, there are some documented workarounds to help ease the pain when these issues are encountered.
+
 ## Mission File Parsing
 
 ### Trigger actions with Windows pathnames may have quotations stripped

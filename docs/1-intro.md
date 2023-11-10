@@ -4,7 +4,21 @@ sidebar_position: 1
 
 # Intro
 
-Frag Orders intro docs
+## History
+
+Frag Orders was created to allow for multiplayer DCS missions to be visualized, planned, and shared with mission participants ahead of time. Through several iterations, the tool has evolved to help in several areas of DCS multiplayer mission making:
+
+* Raise the situational awareness of mission participants by providing an easy way to for them to see where they will be flying
+* Cut down on the amount of briefing material that mission creators have to make
+* Add an element of mission planning to the simulation that would otherwise be difficult in a multiplayer context
+
+## How does it work?
+
+Frag Orders works by parsing your .miz file, then modifying the mission data by applying various edits to the .miz data. These edits might include setting radio frequencies, applying user waypoints, and injecting kneeboards.
+
+### Does Frag Orders store my .miz file(s)?
+
+Yes! Frag Orders saves a copy of your .miz files on a server so that it can run jobs on it. If your .miz files contain any data that you do not want stored on a third-party server, do not use Frag Orders. Uploaded .miz files get removed periodically based on their creation date.
 
 ## Feature Overview
 
