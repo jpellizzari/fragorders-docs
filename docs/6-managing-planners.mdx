@@ -36,9 +36,8 @@ Once the bot has been added to the server, you will be able to associate your fr
 
 ## Adding and editing planning rules
 
-A planning rule will determine which user(s) get to plan the flyable groups in your mission. You can use this to ensure that only certain users are allowed to plan a flight.
-
-Only one user may plan a given group. This avoids conflicting plans being submitted by different users.
+A planning rule will determine which user(s) get to plan the flyable groups in your mission. 
+You can use this to ensure that only certain users are allowed to plan a flight.
 
 To create a planning rule, click the "Add Planning Rule" button to bring up the dialog box:
 
@@ -49,6 +48,21 @@ Note that any additional users you want to add will only be able to select from 
 ![Group selection dialog](../static/img/manage-7.png)
 
 Removing a planning rule will disable planning input for that user, but will not delete their plan(s). Once a plan has been submitted, you will see the "Planning Status" table get populated. From here, a mission creator can choose to remove a users plan, which will ensure it does not get applied to the mission.
+
+### Handling multiple planners for a single group
+
+It is possible for multiple users to submit a plan for the same group. This can have some benefits, such as one person setting waypoints and another setting laser codes. 
+There can be situations where two plans submitted by different users are in conflict, however.
+
+Frag Orders will try to merge all submitted plans using a "field level" merge strategy. Frag Orders will use the following logic to merge the plans together:
+
+* If one Plan has a field defined and the other plan(s) do not, **the Plan with data will take precedence for that field**. For example, if one Plan has waypoints defined and another does not, the Plan with waypoints takes precedence for that field.
+* If two or more Plans have data in the same fields, **the plan that was updated most recently will take precedence**.
+
+In addtion, as mission creator, you have two available tools for handling conflicting plans:
+
+* **Invalidate**: This is a non-descructive way to ignore a Plan. This can be helpful if two users submitted data for the same group, and you do not want to erase the data in one plan. Plans that have an "Invalid" status will be ignored when writing to the .miz file, but will still be present in the Public Frag Order. Users will be able to resubmit their invalid plans.
+* **Delete**: This is a descructive action that removes the Plan entirely. Planners will not be able to recover their data.
 
 :::warning
 **Removing a plan is a descructive action!**
