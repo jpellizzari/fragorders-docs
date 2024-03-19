@@ -96,6 +96,89 @@ export default function Home() {
             />
           </div>
         </Box>
+        <Box m={4}>
+          <div style={{ textAlign: 'center' }}>
+            <h2>Pricing</h2>
+          </div>
+          <div className={styles.textContainer}>
+            <h3>Frag Orders Basic</h3>
+          </div>
+          <div className={styles.textContainer}>
+            <div style={{ textAlign: 'center' }}>
+              <span style={{ fontSize: 24, fontWeight: 600 }}>Free</span>
+              <div>
+                <Box mt={2} style={{ textAlign: 'center' }}>
+                  <p><b>Frag Orders Basic includes:</b></p>
+                </Box>
+              </div>
+              <div style={{ textAlign: 'left' }}>
+                <ul>
+                  <li>
+                    Publicly accessible mission visualization map
+                  </li>
+                  <li>
+                    Drawing tools for participant coordination and planning
+                  </li>
+                  <li>
+                    Generated kneeboard preview
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <Box mt={4}>
+            <div className={styles.textContainer}>
+              <h3>Frag Orders Premium Subscription</h3>
+            </div>
+            <div className={styles.textContainer}>
+              <div>
+                <span style={{ fontSize: 24, fontWeight: 600 }}>$5</span> per month or{' '}<span style={{ fontSize: 24, fontWeight: 600 }}>$50</span> per year
+              </div>
+            </div>
+            <div className={styles.textContainer}>
+              <div>
+                <Box mt={2} style={{ textAlign: 'center' }}>
+                  <p><b>Frag Orders Premium includes:</b></p>
+                </Box>
+                <ul>
+                  <li>
+                    Flight planning for mission participants
+                  </li>
+                  <li>
+                    Auto-generated kneeboards injected directly into your .miz file
+                  </li>
+                  <li>
+                    Radio preset and laser code configuration
+                  </li>
+                  <li>
+                    Countrol measure drawing for mission participants
+                  </li>
+                  <li>
+                    Batch edit and CSV import features
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className={styles.textContainer}>
+              <div style={{ textAlign: 'center' }}>
+                <h3>Pricing FAQs</h3>
+                <Box mt={2}>
+                  <div style={{ textAlign: 'left' }}>
+                    <div>Q: Do mission participants and planners need to subscribe?</div>
+                    <div>A: No, mission participants and planners can use Frag Orders without a subscription </div>
+                  </div>
+                </Box>
+                <Box mt={2}>
+                  <div style={{ textAlign: 'left' }}>
+                    <div>Q: Are volume discounts available?</div>
+                    <div>A: Not currently, but that feature is coming soon!</div>
+                  </div>
+                </Box>
+              </div>
+            </div>
+          </Box>
+        </Box>
       </main>
     </Layout>
   );
