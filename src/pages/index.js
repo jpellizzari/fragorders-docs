@@ -114,13 +114,13 @@ export default function Home() {
               <div style={{ textAlign: 'left' }}>
                 <ul>
                   <li>
-                    Publicly accessible mission visualization map
+                    Hosted mission visualization map
                   </li>
                   <li>
                     Drawing tools for participant coordination and planning
                   </li>
                   <li>
-                    Generated kneeboard preview
+                    Mission creator map visibility controls
                   </li>
                 </ul>
               </div>
