@@ -42,9 +42,9 @@ Control Measure drawing tools:
 * Polygon Tool: draws shape with a filled in area using line segments
 * Circle Tool: draws a circle with a filled in area
 * Rectangle Tool: draws a 4-sided polygon. Note that the editing interaction for this shape is similar to the line string editing interaction.
+* Point tool: draws a point with some special properties. See the [Point Control Measure section](/docs/control-measures#point-control-measure) below for more info.
 
 ![Control Measure Drawing Example](../static/img/cm_5.png)
-
 
 ### Editing Control Measures
 
@@ -55,3 +55,14 @@ To edit a control measure, click the feature on the map to bring up the edit men
 Clicking the Pallette Icon will bring up the color select menu. Clicking the pencil will allow you to edit the geometry of the shape. You can also move the control measure by clicking the center and dragging to the new position:
 
 ![Control Measure Geometry Edit example](../static/img/cm_7.png)
+
+
+### Point Control Measure
+
+The Point control measure allows for a variety of different information to be added to the Frag Order. Control measure editors will be able to add symbols and colors to a Point control measure. If an "Air Defense" icon is selected, the editor will be able to add a threat ring in a color and radius of their choosing.
+
+![Point Control measure input](../static/img/cm_8.png)
+
+:::warning
+The IDENT and FREE fields are Apache specfic, and currently display only. They will not be applied to the .miz file.
+:::
