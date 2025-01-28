@@ -1,0 +1,54 @@
+---
+slug: rewrite
+title: The 2025 Gameplan
+authors: [fragorders]
+tags: []
+---
+
+## The journey so far...
+
+After a frustrating weekend of [trying to add some new features](../blog/planning-rework), it became apparent the Frag Orders code base is starting to buckle under it's own weight. After 5 years and over 1300 code commits, man of the decisions that were made early on are causing friction when trying to extend and maintain the project. In addition, thanks to our Premium subscribers, we now have some cash flow that can be used to pay for some of the operational costs of a more robust and professional architecture.
+
+Some stats about the size of the project:
+```
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+TypeScript                     441           6564           1298          52794
+JSON                             9              0              0          18852
+JavaScript                      13            177            731           3655
+SVG                              4              4              0            219
+HTML                             4             16              0             75
+YAML                             2             10              3             60
+Markdown                         1              9              0             14
+TOML                             1              2              0              8
+DOS Batch                        1              0              0              1
+-------------------------------------------------------------------------------
+SUM:                           477           6795           2032          75760
+-------------------------------------------------------------------------------
+```
+
+## It's time for the rewrite
+
+We have already begun work on what can be thought of as <b>"Frag Orders 2"</b>. This new project will be built using a client-server architecture (original Frag Orders was VERY client-heavy) that will allow for a wider range of new features. Some of these might include:
+
+* **Real-time planning and drawing:** changes to waypoints, radios, drawing, etc can be synced in real time between planners, allowing for a richer planning experience
+* **Collaboration and Role-based Access Control:** allow for multiple mission creators to work on the same Frag Order and control access to Frag Orders via Discord roles
+* **REST/RPC API:** with a client-server model, data and operations can be opened up for third-party tooling
+* **Events, Organizations, and Signups:** this will be a major focus of FO2 enabled by collaboration and role-based access control
+
+These are some of the areas that would have been very difficult in the current architecture, but are somewhat easier if baked into the backend logic from scratch.
+
+## FAQ
+
+Q: <b>What happens to the current version of Frag Orders?</b><br />
+A: It will keep running as it is today, staying ready for any bug fixes to be deployed. There will not be major feautre development on this going forward.
+
+Q: <b>Will my subscription roll over to Frag Orders 2?</b><br />
+A: Yes! No change or additional purchase necessary
+
+Q: <b>Will Frag Orders 2 Premium cost more?</b><br />
+A: Nope! No price increases for the forseeable future.
+
+Q: <b>When will Frag Orders 2 be launched?</b><br />
+A: When it is ready! There is no launch timeline currently. I can say with confidence it will be released before the DCS F-35.
