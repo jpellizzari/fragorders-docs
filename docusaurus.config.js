@@ -41,10 +41,16 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          lastVersion: 'v1',
+          versions: {
+            current: {
+              label: 'v2',
+              path: 'v2',
+            },
+            v1: {
+              label: 'v1',
+            },
+          },
         },
         blog: {
           showReadingTime: false,
@@ -80,6 +86,10 @@ const config = {
           },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
+            type: 'docsVersionDropdown',
+            position: 'right',
+          },
+          {
             href: 'https://fragorders.com',
             label: 'Go to Frag Orders',
             position: 'right',
@@ -93,8 +103,9 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Guides',
+                to: '/docs/getting-started/intro',
+
               },
             ],
           },

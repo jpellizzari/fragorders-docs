@@ -1,0 +1,57 @@
+---
+sidebar_position: 2
+---
+
+# Drawing Tools & Symbols
+
+The drawing toolbar at the bottom of the map lets editors and authorized planners annotate the map with shapes, lines, and military symbols. Drawings are shared across everyone who can view the publish.
+
+## Who Can Draw
+
+Any user with the **Editor** role can draw. Users without editor rights can be granted drawing access individually via the [Drawing Access Rules](../creating-a-frag-order/managing-access#drawing-access-rules) in the Access tab.
+
+## Drawing Tool Toolbar
+
+The toolbar at the bottom of the map contains the following tools:
+
+| Tool | Description |
+|------|-------------|
+| **Pointer** | Select and move existing drawings |
+| **Line** | Draw a straight line or multi-segment polyline |
+| **Rectangle** | Draw an axis-aligned rectangle |
+| **Circle** | Draw a circle (drag from center) |
+| **Polygon** | Draw a free-form closed polygon |
+| **Symbol / Icon** | Place a military unit symbol marker |
+| **Freehand** | Draw a freehand line |
+| **Eraser** | Delete a drawing by clicking it |
+
+## Creating a Shape
+
+Select a shape tool, then click on the map to place vertices. For polygons, each click adds a vertex — double-click or close the shape to finish.
+
+![Polygon being drawn on the map](/img/may_poly_drawing.png)
+
+## Editing a Drawing
+
+Click any existing drawing to open its details popover. From here you can:
+
+![Drawing details popover — shape](/img/drawing_details.png)
+
+- **Name** — give the drawing a label that appears on the map
+- **Stroke** — set the outline color
+- **Fill** — set the fill color, or clear it for an outline-only shape
+- **Altitude** — optionally attach an altitude value
+- **Delete** — remove the drawing entirely
+
+The popover also shows the centroid coordinates in both decimal degrees and MGRS.
+
+## Military Symbols (Icons)
+
+Selecting the **Symbol** tool places a NATO MILSYM-style icon marker. Click the drawing to open its popover and choose from the available symbol types:
+
+![Icon drawing with symbol picker](/img/drawing_icon.png)
+
+Available symbols include Infantry, Armor, Artillery, Air Defense, Recon, and HQ / Command Post, among others. Give the marker a name and it will display as a label on the map.
+
+You can also enter any **SIDC** (Symbol Identification Code) directly to place any NATO APP-6 symbol. Use [milsymb.net](https://sidc.milsymb.net/#/APP6/10061000001205000000) to browse and build SIDC codes for any unit type.
+

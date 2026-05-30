@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+---
+
+# Map Overview & Layers
+
+The map is the main workspace in a published Frag Order. It shows all flight routes, ground units, threat rings, and drawings for the selected coalition in a single view.
+
+![Map overview with routes and threat rings](/img/map_overview.png)
+
+## View Modes
+
+Three buttons in the top-left corner switch the map renderer:
+
+| Button | Mode |
+|--------|------|
+| **Map** | Standard 2D top-down view (default) |
+| **Globe** | 3D perspective with terrain shading and domed threat rings |
+| **Dark** | Dark base map for low-light briefings |
+
+![3D globe view with domed threat rings](/img/map_3d.png)
+
+## Layer Controls
+
+The **Base Layers** panel on the left toggles what is rendered on the map:
+
+| Layer | Description |
+|-------|-------------|
+| **MGRS Grid** | Military Grid Reference System overlay |
+| **Hillshade** | Terrain shading derived from elevation data |
+| **Contours** | Elevation contour lines |
+| **Bullseye** | Bullseye reference point from the mission file |
+| **Target Points** | Named target steerpoints |
+| **Threat Rings** | SAM and AAA engagement envelopes from the mission file |
+| **OPFOR** | Enemy ground units |
+| **Vehicles** | All vehicle groups |
+| **Drawings** | Planning drawings added by editors and planners |
+
+## Groups Panel
+
+Below the base layers, the **Groups** panel lists every flight group in the coalition. Each group has two icon buttons:
+
+- **Eye** — toggle the group's route visibility on the map
+- **Lock** — focus the map on that group's route
+
+Click a group name to highlight its route and jump to it on the map.

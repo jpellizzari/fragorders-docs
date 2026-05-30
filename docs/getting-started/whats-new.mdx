@@ -1,0 +1,39 @@
+---
+sidebar_position: 2
+---
+
+# What's New in v2
+
+v2 is a ground-up rewrite of Frag Orders with a new backend, a new map engine, and a significantly expanded planning model. Here's what's changed.
+
+## Redesigned Access Control
+
+Access rules now support Discord roles directly alongside individual users, and multiple users or roles can be assigned to the same flight group as planners. Assign `@Squadron` as a planner for a flight and everyone with that role gets access automatically. Stack a flight lead on top of that and both can plan the same package independently — the most requested feature from v1.
+
+See [Managing Access](../creating-a-frag-order/managing-access).
+
+## Pilot Signups
+
+Pilots can now sign up for specific slots directly from the publish. Owners and Editors review each request and approve or deny it. Slot fill counts are tracked per group, and the Pilot Roster kneeboard reflects approved signups automatically.
+
+See [Signups](../creating-a-frag-order/signups).
+
+## Timeline Editor
+
+A visual Gantt-style timeline for the whole package. Place push times, MEZ penetration events, PET windows, VUL blocks, refueling windows, and loiter events against a shared Zulu time axis. Built for multi-flight package coordination where timing relationships matter.
+
+See [Timeline](../planning/timeline).
+
+## Redesigned Map
+
+The map is now built on a more capable engine with support for:
+
+- **3D globe view** with terrain shading and domed threat rings
+- **MGRS grid overlay**
+- **Drawing tools** — lines, rectangles, circles, polygons, and NATO MILSYM icon markers
+- **Per-layer visibility controls** for OPFOR, vehicles, drawings, threat rings, and more
+- **New map tile pipeline** — theater tiles are generated from an in-house pipeline, producing sharper, more accurate terrain for all supported DCS theaters
+
+## Redesigned Kneeboards
+
+The data card and route card have been substantially improved. The data card now includes the full flight roster, all waypoints with leg distances and cumulative TOT, and two radio columns. The route card uses the same map engine as the planning workspace.

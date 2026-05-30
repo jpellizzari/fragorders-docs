@@ -1,0 +1,61 @@
+---
+sidebar_position: 2
+---
+
+# Managing Access
+
+The **Access** tab controls who can see and interact with your Frag Order. Access is configured per coalition — Blue and Red each have their own independent set of rules.
+
+![Access tab](/img/access1.png)
+
+## Discord Server
+
+At the top of the Access tab you'll see which Discord server is linked to this Frag Order. Roles and users available for assignment are pulled from this server. Click **Change Server** to link a different one.
+
+## Global Access Rules
+
+Global rules set the default role for every pilot in the coalition. There are three roles:
+
+| Role | Description |
+|------|-------------|
+| **Owner** | Full control — can update access rules and signups |
+| **Editor** | Can plan any group, add drawings, and adjust timing. Implicitly has editor access to all groups |
+| **Viewer** | Can read the Frag Order, join signups, and brief. Cannot plan or draw |
+
+![Global access rules](/img/multieditor.png)
+
+Click **+ Add User/Role** in any column to assign a Discord user or role. You can assign individual users by name or entire Discord roles (e.g. `@Test Blue`) so that everyone with that role automatically gets access.
+
+The special `<public>` principal makes the Frag Order visible to anyone with the link, without requiring Discord login.
+
+## Drawing Access Rules
+
+Grants non-editors the ability to add drawing objects (lines, zones, markers) to the coalition map. Useful for giving JTAC or GCI operators drawing permissions without full editor rights.
+
+## Group Access Rules
+
+Delegate planning access to specific groups without granting full editor rights across the coalition.
+
+![Group access rules](/img/access2.png)
+
+Each flight group in the mission is listed here. By default, only Editors can plan a group. Click **+ Add** next to a group to assign a **Planner** — a user or role that can edit waypoints, laser codes, and radio presets for that group only.
+
+:::tip Multiple planners per group
+You can assign as many users and roles as you want to a single group. This is a common setup for large events where, for example, both a flight lead and a squadron role need planning access to the same package.
+:::
+
+You can also use **+ Add Planner Rule** to assign a user or role to multiple groups at once:
+
+![Add planner dialog](/img/addplanner.png)
+
+Select the user or role, then pick which groups they should have planning access to.
+
+![Planner assigned to groups](/img/groupaccess.png)
+
+### Signups Toggle
+
+The **Signups Disabled / Enabled** toggle at the top of the Group Access Rules section controls whether pilots can sign up for slots in this coalition's publish. When disabled, the Signups tab will be hidden from viewers.
+
+When signups are enabled, a **Signup** column appears next to each group. This controls who can fill a slot in that group's roster — independent of who can plan it. By default there is no override and the global access rules apply. You can assign specific users, roles, or `<everyone>` to open a group's signups to anyone.
+
+![Group access rules with signups enabled](/img/signupsaccess.png)
