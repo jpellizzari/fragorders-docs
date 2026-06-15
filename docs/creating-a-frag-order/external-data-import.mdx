@@ -1,0 +1,65 @@
+---
+sidebar_position: 5
+---
+
+# External Data Import
+
+The **Import** tab lets you bring external geo data — KMZ, KML, or GeoJSON files — into a Frag Order and have it appear as drawing objects in your downloaded `.miz` file. This is useful for importing targets, boundaries, or control measures created in tools like Google Earth or ATAK.
+
+## Supported Formats
+
+| Format | Notes |
+|--------|-------|
+| **KMZ** | Google Earth export; embedded icons are preserved and served by Frag Orders |
+| **KML** | Uncompressed keyhole markup; supports placemarks, paths, and polygons |
+| **GeoJSON** | Standard geo interchange format |
+
+## Uploading Data
+
+1. Open your Frag Order and click the **Import** tab.
+
+![Import tab showing an existing list of imported features](/img/data_import_base.png)
+
+2. Click **Import File** and select your file, or drag and drop it onto the tab.
+3. Frag Orders analyzes the file and shows a preview: feature count broken down by type (points, lines, polygons).
+
+![Analyze preview banner showing 144 features before confirming import](/img/data_import_uploaded.png)
+
+4. Click **Import** to confirm. The features are stored and appear on the map immediately.
+
+Imported items are scoped to the entire Frag Order and are visible to all coalitions unless you restrict them using export targets (see below).
+
+## Viewing Imported Data on the Map
+
+Once imported, features appear on the map as an **Imported Data** layer. The layer can be toggled via Map Settings. Click any imported feature to open its info popover.
+
+![Imported KMZ data rendered on the map](/img/data_import_example.png)
+
+## Setting Export Targets
+
+By default, imported items are stored in Frag Orders but are not injected into your `.miz`. To include an item in the downloaded mission file, you must assign it an **export target**.
+
+Click an imported feature on the map to open its info popover, then choose one or more targets under **Export Targets**:
+
+![Export target popover showing COMMON selected and the MIZ Layer dropdown](/img/data_import_export_targets.png)
+
+| Target | Description |
+|--------|-------------|
+| **Common** | Mission drawing layer visible to all coalitions |
+| **Author** | Author-only drawing layer |
+| **Blue** | Blue coalition drawing layer |
+| **Red** | Red coalition drawing layer |
+
+Each item can be assigned to multiple layers. Saving the targets takes effect immediately — no need to re-upload.
+
+## Downloading with Imported Data
+
+When you download a packaged `.miz` from the Publish page, any imported items with export targets are automatically injected into the mission's drawing layers. Points become icon markers with a text label; lines and polygons become line/polygon drawings. Colors and styling are carried over from the source file where available.
+
+No changes are made to the original `.miz` you uploaded — the injection only happens in the downloaded package.
+
+![Imported data visible on the DCS F10 map after packaging](/img/data_import_miz_example.png)
+
+## Deleting an Import Item
+
+Open the item's popover on the map and click **Delete**. The item is removed from Frag Orders and will no longer be injected into future downloads.
