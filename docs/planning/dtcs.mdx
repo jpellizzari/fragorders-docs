@@ -1,0 +1,78 @@
+---
+sidebar_position: 5
+---
+
+# Data Transfer Cartridges (DTC)
+
+The **DTC** page in a frag order lists every Data Transfer Cartridge available to the mission, lets you inspect what each one contains, and lets editors upload their own cartridges and nudge points around on a map. Cartridges you upload are packaged into the exported `.miz`, so pilots load them in-cockpit exactly as authored.
+
+This page covers managing whole cartridges. To push your map **drawings** into a cartridge's geo lines instead, see [Drawings in the DTC](./drawings-to-dtc).
+
+![The DTC page listing mission and uploaded cartridges with the inspector open](/img/dtc_overview.png)
+
+## Opening the DTC View
+
+Open the **DTC** item in the publish navigation. The left pane lists every cartridge; selecting one opens its inspector on the right.
+
+Two kinds of cartridge show up in the list:
+
+- **Mission** cartridges (gray badge) are embedded in the uploaded `.miz` by the mission author. They are **read-only** — you can inspect and download them, but not edit or delete them.
+- **Uploaded** cartridges (blue badge) are ones you added through Frag Orders. These are fully editable.
+
+If a mission cartridge and an uploaded cartridge share the same file name, the uploaded one takes precedence and hides the mission copy.
+
+## Inspecting a Cartridge
+
+The inspector splits a cartridge into tabs, and only shows the tabs that actually contain data. Depending on the airframe you may see:
+
+- **Comms** — radio presets
+- **Waypoints** — nav points, with a mini-map
+- **Threats** — threat points and their rings, with a mini-map
+- **Geo Lines** — lines and shapes drawn on the moving map, with a mini-map
+- **RWR** — radar-warning receiver programming
+- **Countermeasures** — chaff/flare programs
+- **Raw JSON** — the full cartridge, always available
+
+The parsers are airframe-aware, so an F-16 cartridge (MPD / ELINT) and an F/A-18 cartridge (WYPT / SA / ALR-67) are each broken down using the right fields.
+
+Every cartridge — mission or uploaded — can be downloaded as a `.dtc` file using the download button in the view header.
+
+## Uploading Cartridges
+
+Uploading requires the **Editor** (or Owner) role. DTCs are mission-wide rather than tied to a single flight, so individual group **planners** cannot upload, edit, or delete them.
+
+To upload:
+
+1. Drag one or more `.dtc` files anywhere onto the DTC list pane, or click the upload button in the list header.
+2. Frag Orders validates each file. A file that isn't valid DTC JSON is rejected with an error.
+3. The cartridge is saved and appears at the top of the list with an **uploaded** badge.
+
+Re-uploading a file with the same name replaces the previous version.
+
+### Terrain Must Match
+
+A cartridge is rejected if its terrain doesn't match the frag order's theater. This prevents loading, say, a Syria cartridge into a Caucasus mission where its coordinates would be meaningless.
+
+## Editing Points on the Map
+
+The Waypoints, Threats, and Geo Lines tabs each render a mini-map for the cartridge. On an **uploaded** cartridge, editors can drag points directly:
+
+- **Nav points** and **geo-line vertices** can be dragged to a new position.
+- Only existing points move — you can't insert a new vertex partway along a line.
+- Threat rings and derived route lines are display-only.
+
+Each drag re-serializes the entire cartridge and saves it. The map holds the point at its new position until the save lands, so it won't flicker back. A success or error notification confirms the result.
+
+DTC lines are drawn dotted, matching how they appear on the aircraft's moving map.
+
+Mission cartridges render the same maps but are not draggable.
+
+## In the .miz File
+
+When you download a packaged `.miz` from the Publish page, every uploaded cartridge is written into it under the mission's `DTC/` directory, so pilots find them in the in-cockpit DTC menu. Mission-embedded cartridges are left as the author saved them.
+
+As with all packaging, the original `.miz` you uploaded is never modified — cartridges are only injected into the downloaded copy.
+
+:::note
+Deleting an uploaded cartridge only removes it from Frag Orders and future packaged downloads. It has no effect on cartridges the mission author embedded in the original `.miz`.
+:::
