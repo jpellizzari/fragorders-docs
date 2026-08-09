@@ -1,12 +1,12 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 # Data Transfer Cartridges (DTC)
 
-The **DTC** page in a frag order lists every Data Transfer Cartridge available to the mission, lets you inspect what each one contains, and lets editors upload their own cartridges and nudge points around on a map. Cartridges you upload are packaged into the exported `.miz`, so pilots load them in-cockpit exactly as authored.
+The **DTC** page in a frag order is your one stop for Data Transfer Cartridges. From here you can inspect the cartridges already in the mission, create or upload your own, and push your map **drawings and routes** into a cartridge so pilots load them in-cockpit exactly as planned — no manual point entry required.
 
-This page covers managing whole cartridges. To push your map **drawings** into a cartridge's geo lines instead, see [Drawings in the DTC](./drawings-to-dtc).
+Everything you add is written into the exported `.miz` under the mission's `DTC/` directory. As with all packaging, the original `.miz` you uploaded is never modified — cartridges are only injected into the downloaded copy.
 
 ![The DTC page listing mission and uploaded cartridges with the inspector open](/img/dtc_overview.png)
 
@@ -14,34 +14,28 @@ This page covers managing whole cartridges. To push your map **drawings** into a
 
 Open the **DTC** item in the publish navigation. The left pane lists every cartridge; selecting one opens its inspector on the right.
 
-Two kinds of cartridge show up in the list:
+Two kinds of cartridge show up:
 
 - **Mission** cartridges (gray badge) are embedded in the uploaded `.miz` by the mission author. They are **read-only** — you can inspect and download them, but not edit or delete them.
-- **Uploaded** cartridges (blue badge) are ones you added through Frag Orders. These are fully editable.
+- **Uploaded** cartridges (blue badge) are ones you added through Frag Orders, either by uploading a `.dtc` file or by creating a new one. These are fully editable.
 
 If a mission cartridge and an uploaded cartridge share the same file name, the uploaded one takes precedence and hides the mission copy.
 
-## Inspecting a Cartridge
+Managing cartridges requires the **Editor** (or Owner) role. DTCs are mission-wide rather than tied to a single flight, so individual group **planners** cannot create, upload, edit, or delete them.
 
-The inspector splits a cartridge into tabs, and only shows the tabs that actually contain data. Depending on the airframe you may see:
+## Creating a New Cartridge
 
-- **Comms** — radio presets
-- **Waypoints** — nav points, with a mini-map
-- **Threats** — threat points and their rings, with a mini-map
-- **Geo Lines** — lines and shapes drawn on the moving map, with a mini-map
-- **RWR** — radar-warning receiver programming
-- **Countermeasures** — chaff/flare programs
-- **Raw JSON** — the full cartridge, always available
+You don't need the mission author to pre-seed a cartridge — you can synthesize a fresh, empty one for any supported airframe.
 
-The parsers are airframe-aware, so an F-16 cartridge (MPD / ELINT) and an F/A-18 cartridge (WYPT / SA / ALR-67) are each broken down using the right fields.
+1. Click the **+** (New cartridge) button in the list header.
+2. Pick the **airframe** — F-16C Viper, F/A-18C Hornet, or F-14B Tomcat.
+3. Give it a **name** and click **Create**.
 
-Every cartridge — mission or uploaded — can be downloaded as a `.dtc` file using the download button in the view header.
+The new cartridge is a clean, valid DCS-DTC cartridge with no waypoints, threats, or routes yet — ready to receive your map content on export. Its terrain is stamped automatically to match the mission, so it always loads on the right map.
 
 ## Uploading Cartridges
 
-Uploading requires the **Editor** (or Owner) role. DTCs are mission-wide rather than tied to a single flight, so individual group **planners** cannot upload, edit, or delete them.
-
-To upload:
+To bring in a cartridge built elsewhere:
 
 1. Drag one or more `.dtc` files anywhere onto the DTC list pane, or click the upload button in the list header.
 2. Frag Orders validates each file. A file that isn't valid DTC JSON is rejected with an error.
@@ -51,7 +45,98 @@ Re-uploading a file with the same name replaces the previous version.
 
 ### Terrain Must Match
 
-A cartridge is rejected if its terrain doesn't match the frag order's theater. This prevents loading, say, a Syria cartridge into a Caucasus mission where its coordinates would be meaningless.
+A cartridge is rejected if its terrain doesn't match the frag order's theater. This prevents loading, say, a Syria cartridge into a Caucasus mission where its coordinates would be meaningless. (Cartridges you create in Frag Orders are always stamped with the correct terrain.)
+
+## Inspecting a Cartridge
+
+The inspector splits a cartridge into tabs, and only shows the tabs that actually contain data. Depending on the airframe you may see:
+
+- **Comms** — radio presets
+- **Waypoints** — nav points, with a mini-map
+- **Threats** — threat points and their rings, with a mini-map
+- **Geo Lines** — lines and shapes drawn on the moving map, with a mini-map
+- **JDAM** — pre-planned aimpoints (F-14B)
+- **RWR** — radar-warning receiver programming
+- **Countermeasures** — chaff/flare programs
+- **Raw JSON** — the full cartridge, always available
+
+The parsers are airframe-aware, so an F-16 cartridge (MPD / ELINT) and an F/A-18 cartridge (WYPT / SA / ALR-67) are each broken down using the right fields.
+
+Every cartridge — mission or uploaded — can be downloaded as a `.dtc` file using the download button in the view header.
+
+## Sending Map Content to a Cartridge
+
+Beyond what a cartridge already holds, Frag Orders can inject your **map drawings** and **flight routes** into it on export. These appear as extra preview tabs at the top of the DTC inspector — each with a mini-map — so you can verify exactly what will be written before packaging.
+
+Two rules apply to every drawing you export:
+
+1. **The drawing must be on the Shared layer.** Export targets are disabled for personal drawings, since a cartridge is shared by everyone flying that airframe. See [Shared visibility](#shared-visibility-is-required) below.
+2. **A target cartridge must exist.** Any cartridge — mission-embedded, uploaded, or one you [created](#creating-a-new-cartridge) — can be a target.
+
+### Assigning an Export Target
+
+1. Draw the shape on the map and set its visibility to **Shared**.
+2. Click the drawing to open its details popover.
+3. Under **Export Targets**, open the dropdown. Each cartridge in the mission appears as its own group with the options valid for that shape.
+4. Select the cartridge(s) you want this drawing written to. A drawing can target multiple cartridges (and Miz Layers) at once.
+
+Selections save immediately — there is no separate confirm step.
+
+![The drawing details popover with the Export Targets dropdown open](/img/dtc_menu.png)
+
+### What Each Shape Becomes
+
+| Draw this | It exports as | Where it lands |
+| --- | --- | --- |
+| **Line** or **polygon** | Geo Line | Cartridge geo-line slots (**L1–L4**) |
+| **Circle** | Threat ring | F-16 threat points / F/A-18 MEZ |
+| **Point** | Standalone point | **F-16:** DEST destination · **F/A-18:** GPS waypoint · **F-14B:** JDAM aimpoint |
+| **Route** (Route tool) | Flight route / steerpoints | Route partitions **R1 / R2 / R3** |
+
+![Line and polygon drawings on the Frag Orders map, ready to export to the DTC](/img/dtc_drawings_map.png)
+
+#### Geo Lines
+
+Lines and polygons land in the cartridge's **Geo Lines** slots and show up on the aircraft's moving map. Each drawing occupies one of the four slots (**L1–L4**); slots already used by the mission author are skipped, so you can add up to four Frag Orders geo lines per cartridge without disturbing existing ones. The drawing's label becomes the note on the first point, and altitude (if set) is carried through in feet.
+
+#### Threat Rings
+
+A **circle** becomes a threat ring — an F-16 threat point or an F/A-18 MEZ threat — with its radius carried through. On the F-16 the on-MFD label is clamped to two characters (all the threat-point display supports); the full name is kept alongside it.
+
+#### Standalone Points
+
+A **point** exports as a stand-alone, off-route point: a **DEST** destination on the F-16, a **GPS waypoint** on the F/A-18, or a pre-planned **JDAM aimpoint** on the F-14B. The option shown depends on the target cartridge's airframe. Points are **not** written as steerpoints — steerpoints come from routes.
+
+#### Routes
+
+A **route** drawn with the Route tool exports as a flight route into a cartridge's route partitions (R1 / R2 / R3). See [Planning a Route](#planning-a-route) below.
+
+### Shared Visibility Is Required {#shared-visibility-is-required}
+
+The **Export Targets** control on a drawing is disabled while it's set to **Only me**. Switch it to **Shared** first:
+
+- In the drawing popover, under **Visibility**, click **Shared**.
+- Sharing requires the **Drawing Editor** permission. If the option is greyed out, ask the frag order owner to grant it via the [Drawing Access Rules](../creating-a-frag-order/managing-access#drawing-access-rules).
+
+Only the drawing's creator can change its visibility.
+
+## Planning a Route {#planning-a-route}
+
+Use the dedicated **Route** tool (in the map's drawing toolbar) to build a flight route: a series of numbered waypoints you edit like a flight plan. Routes are always shared with everyone flying the mission, so only **Editors** can create and edit them.
+
+Select the Route tool and click along the map to drop waypoints; double-click or right-click to finish. Click any waypoint to open its editor:
+
+![Editing a route waypoint on the map](/img/route_tool.png)
+
+- **Name** — a label for the waypoint.
+- **Type** — Steerpoint, IP, or Target. The map marker is shaped by type: a **square** for steerpoints, a **circle** for IPs, and a **triangle** for targets.
+- **ToT** — the time-on-target for the waypoint.
+- **Altitude** — MSL or AGL. New waypoints start at the ground elevation beneath them, so the value begins sensible.
+- **Add After / Delete** — insert a new waypoint after this one, or remove it.
+
+**Grab and drag** any waypoint to reposition it — the route line follows as you move it.
+
+To send the route to a cartridge, click the **route line** itself and choose a **partition** — **R1**, **R2**, or **R3** — under **Export Partitions**. Each waypoint becomes a steerpoint on that route, waypoints typed **TGT** are flagged as targets, and each waypoint's ToT is written to the cartridge.
 
 ## Editing Points on the Map
 
@@ -61,17 +146,21 @@ The Waypoints, Threats, and Geo Lines tabs each render a mini-map for the cartri
 - Only existing points move — you can't insert a new vertex partway along a line.
 - Threat rings and derived route lines are display-only.
 
-Each drag re-serializes the entire cartridge and saves it. The map holds the point at its new position until the save lands, so it won't flicker back. A success or error notification confirms the result.
-
-DTC lines are drawn dotted, matching how they appear on the aircraft's moving map.
-
-Mission cartridges render the same maps but are not draggable.
+Each drag re-serializes the entire cartridge and saves it. The map holds the point at its new position until the save lands, so it won't flicker back. A success or error notification confirms the result. DTC lines are drawn dotted, matching how they appear on the aircraft's moving map. Mission cartridges render the same maps but are not draggable.
 
 ## In the .miz File
 
-When you download a packaged `.miz` from the Publish page, every uploaded cartridge is written into it under the mission's `DTC/` directory, so pilots find them in the in-cockpit DTC menu. Mission-embedded cartridges are left as the author saved them.
+When you download a packaged `.miz` from the Publish page, every uploaded cartridge — plus all the drawings and routes you targeted at it — is written into the mission's `DTC/` directory, so pilots find them in the in-cockpit DTC menu. Mission-embedded cartridges are left as the author saved them.
 
-As with all packaging, the original `.miz` you uploaded is never modified — cartridges are only injected into the downloaded copy.
+![The packaged drawings loaded in the DCS DTC editor and shown on the in-game map](/img/dtc_miz_result.png)
+
+:::tip
+DTC Geo Lines are distinct from the mission's F10-map drawing layers. If you want a shape to appear **both** on the F10 map and in the cartridge, assign it a **Miz Layer** target (Common, Author, Blue, or Red) *and* a DTC target.
+:::
+
+:::caution
+Only four geo-line slots (L1–L4) exist per cartridge. If existing geo lines plus your Frag Orders drawings exceed four, the extra drawings are skipped during packaging.
+:::
 
 :::note
 Deleting an uploaded cartridge only removes it from Frag Orders and future packaged downloads. It has no effect on cartridges the mission author embedded in the original `.miz`.
