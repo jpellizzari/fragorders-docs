@@ -16,7 +16,7 @@ Open the **DTC** item in the publish navigation. The left pane lists every cartr
 
 Two kinds of cartridge show up:
 
-- **Mission** cartridges (gray badge) are embedded in the uploaded `.miz` by the mission author. They are **read-only** — you can inspect and download them, but not edit or delete them.
+- **Mission** cartridges (gray badge) are embedded in the uploaded `.miz` by the mission author. Editors can move supported points and vertices; the first edit saves an uploaded cartridge with the same name, which takes precedence over the mission copy.
 - **Uploaded** cartridges (blue badge) are ones you added through Frag Orders, either by uploading a `.dtc` file or by creating a new one. These are fully editable.
 
 If a mission cartridge and an uploaded cartridge share the same file name, the uploaded one takes precedence and hides the mission copy.
@@ -28,7 +28,7 @@ Managing cartridges requires the **Editor** (or Owner) role. DTCs are mission-wi
 You don't need the mission author to pre-seed a cartridge — you can synthesize a fresh, empty one for any supported airframe.
 
 1. Click the **+** (New cartridge) button in the list header.
-2. Pick the **airframe** — F-16C Viper, F/A-18C Hornet, or F-14B Tomcat.
+2. Pick the **airframe** — F-16C Viper, F/A-18C Hornet, F-14B Tomcat, or AH-64D Apache.
 3. Give it a **name** and click **Create**.
 
 The new cartridge is a clean, valid DCS-DTC cartridge with no waypoints, threats, or routes yet — ready to receive your map content on export. Its terrain is stamped automatically to match the mission, so it always loads on the right map.
@@ -70,7 +70,7 @@ Beyond what a cartridge already holds, Frag Orders can inject your **map drawing
 
 Two rules apply to every drawing you export:
 
-1. **The drawing must be on the Shared layer.** Export targets are disabled for personal drawings, since a cartridge is shared by everyone flying that airframe. See [Shared visibility](#shared-visibility-is-required) below.
+1. **The drawing must be on the Shared layer.** Export targets are disabled for personal drawings, since a cartridge is shared by everyone flying that airframe. Sharing requires the **Drawing Editor** permission; see [Drawing Access Rules](../creating-a-frag-order/managing-access#drawing-access-rules).
 2. **A target cartridge must exist.** Any cartridge — mission-embedded, uploaded, or one you [created](#creating-a-new-cartridge) — can be a target.
 
 ### Assigning an Export Target
@@ -111,14 +111,46 @@ A **point** exports as a stand-alone, off-route point: a **DEST** destination on
 
 A **route** drawn with the Route tool exports as a flight route into a cartridge's route partitions (R1 / R2 / R3). See [Planning a Route](#planning-a-route) below.
 
-### Shared Visibility Is Required {#shared-visibility-is-required}
+## AH-64D Apache
 
-The **Export Targets** control on a drawing is disabled while it's set to **Only me**. Switch it to **Shared** first:
+Frag Orders can create, inspect, display, edit, and package AH-64D Apache cartridges. Apache cartridge points, routes, lines, areas, PFZs, and NFZs appear on the main planning map and in the DTC inspector.
 
-- In the drawing popover, under **Visibility**, click **Shared**.
-- Sharing requires the **Drawing Editor** permission. If the option is greyed out, ask the frag order owner to grant it via the [Drawing Access Rules](../creating-a-frag-order/managing-access#drawing-access-rules).
+### Apache Points
 
-Only the drawing's creator can change its visibility.
+Create a shared **point** drawing, select the Apache cartridge's point export target, and use one of these exact label formats:
+
+| Drawing label | Apache partition | Valid slots | DTC display text |
+| --- | --- | --- | --- |
+| `WP01` | Waypoint/Hazard (`WPTHZ`) | `01`–`50` | `W01` |
+| `HZ01` | Waypoint/Hazard (`WPTHZ`) | `01`–`50` | `H01` |
+| `CM51` | Control Measure (`CTRLM`) | `51`–`99` | `C51` |
+| `TG01` | Target (`TGT`) | `01`–`50` | `T01` |
+
+Labels are case-insensitive, but they must contain the two-letter prefix and a two-digit slot number. Each point's map altitude is converted from meters to feet when written to the cartridge. Duplicate labels targeting the same partition and slot are rejected during packaging.
+
+For target points, add an optional Apache identifier after a colon. For example, `TG01:S6` writes target slot 01 with display text `T01` and the `S6` air-defense identifier. Other valid Apache target identifiers, such as `SA10`, work the same way. Identifiers are case-insensitive; unknown identifiers are rejected rather than silently written as a generic target.
+
+![An Apache target point labeled TG01:S6 and assigned to an Apache DTC export target](/img/apache_dtc.png)
+
+In `TG01:S6`, `TG01` selects target slot 01 and `S6` populates the Apache **IDENT**. The point is shown as `T01` in the cartridge while retaining `S6` as its tactical identifier.
+
+:::tip
+Use the drawing label `CM54`, not `C54`. Frag Orders uses `CM` to select the Control Measure partition, then writes the Apache display label as `C54`.
+:::
+
+### Apache Routes and Shapes
+
+Routes can be assigned to any of the ten Apache route partitions: **ALPHA, BRAVO, DELTA, ECHO, HOTEL, INDIA, LIMA, OSCAR, ROMEO,** or **TANGO**. Route vertices are allocated from the shared waypoint slots `01`–`50`, skipping slots already occupied in the cartridge.
+
+Apache drawing export options depend on the geometry:
+
+| Draw this | Apache export option |
+| --- | --- |
+| Point | Waypoint, Hazard, Control Measure, or Target |
+| Line | Line |
+| Polygon | Area, PFZ, or NFZ |
+
+Circles are not offered as an Apache export type. Polygon closing vertices are normalized when written, so the cartridge does not receive a duplicate final vertex.
 
 ## Planning a Route {#planning-a-route}
 
@@ -140,13 +172,13 @@ To send the route to a cartridge, click the **route line** itself and choose a *
 
 ## Editing Points on the Map
 
-The Waypoints, Threats, and Geo Lines tabs each render a mini-map for the cartridge. On an **uploaded** cartridge, editors can drag points directly:
+The Waypoints, Threats, and Geo Lines tabs each render a mini-map for the cartridge. Editors can drag supported points directly:
 
 - **Nav points** and **geo-line vertices** can be dragged to a new position.
 - Only existing points move — you can't insert a new vertex partway along a line.
 - Threat rings and derived route lines are display-only.
 
-Each drag re-serializes the entire cartridge and saves it. The map holds the point at its new position until the save lands, so it won't flicker back. A success or error notification confirms the result. DTC lines are drawn dotted, matching how they appear on the aircraft's moving map. Mission cartridges render the same maps but are not draggable.
+Each drag re-serializes the entire cartridge and saves it. The map holds the point at its new position until the save lands, so it won't flicker back. A success or error notification confirms the result. DTC lines are drawn dotted, matching how they appear on the aircraft's moving map. Editing a mission cartridge creates an uploaded cartridge with the same name, leaving the original mission file unchanged.
 
 ## In the .miz File
 
