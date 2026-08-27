@@ -47,6 +47,45 @@ Re-uploading a file with the same name replaces the previous version.
 
 A cartridge is rejected if its terrain doesn't match the frag order's theater. This prevents loading, say, a Syria cartridge into a Caucasus mission where its coordinates would be meaningless. (Cartridges you create in Frag Orders are always stamped with the correct terrain.)
 
+## Assigning a Cartridge to Aircraft
+
+Assign a cartridge to a flight when you want DCS to make it available to those aircraft in the packaged mission. You can assign one cartridge to an entire flight or give individual flight members different cartridges.
+
+### From the DTC View
+
+1. Select the cartridge you want to assign.
+2. Under **Assign cartridge**, select one or more flights. Frag Orders only lists flights whose aircraft type matches the cartridge's airframe.
+3. Select **Entire flight** or a specific **Flight member**.
+4. Click **Assign**.
+
+![Assigning a Viper cartridge to several matching flights from the DTC view](/img/dtc_assign_1.png)
+
+The selectors show the cartridge's current assignments from the server. When the cartridge is assigned to several whole flights, all of those flights are selected. When the same flight-member position is assigned across several flights, the member selector shows that position.
+
+:::note
+If the selected flights have a mixture of whole-flight and individual-member assignments, the affected flights remain selected but the member selector is blank because no single member choice represents the current state.
+:::
+
+Assigning a cartridge to an individual member changes only that member. Existing assignments for the other members of the flight are preserved, so a four-ship can use four different cartridges if needed.
+
+### From the Roster
+
+You can also assign cartridges while working with a flight in the roster:
+
+1. Open the flight from the **Roster**.
+2. Open its **Avionics** controls and select **DTC**.
+3. Use the flight dropdown to assign one cartridge to every member, or use the member dropdowns to assign aircraft individually.
+
+![Reviewing and changing DTC assignments for a Hornet flight from the roster](/img/dtc_assign_2.png)
+
+Only cartridges matching the flight's aircraft type are offered. Existing assignments are shown in the dropdowns, so you can verify or change the flight without returning to the DTC page.
+
+### What Gets Packaged
+
+When you download the packaged `.miz`, Frag Orders writes uploaded cartridges into its `DTC/` directory and updates each assigned aircraft to reference its cartridge. An entire-flight assignment gives every aircraft in that flight the same cartridge; an individual assignment changes only the selected member. Assigned cartridges are configured to load automatically in supported aircraft.
+
+Changing an assignment does not alter the original mission file. The assignment is applied only to packaged downloads.
+
 ## Inspecting a Cartridge
 
 The inspector splits a cartridge into tabs, and only shows the tabs that actually contain data. Depending on the airframe you may see:
