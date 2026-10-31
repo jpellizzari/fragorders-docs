@@ -1,0 +1,63 @@
+---
+slug: introducing-v2
+title: Introducing Frag Orders v2
+authors: [fragorders]
+tags: []
+description: A new planning workspace for DCS missions, with shared planning, pilot signups, a package timeline, DTCs, and redesigned maps and kneeboards.
+---
+
+import styles from '../src/pages/index.module.css';
+
+Frag Orders v2 is here. We've rebuilt Frag Orders around the way multiplayer DCS missions are planned: mission creators working together, flight leads coordinating a package, and pilots getting ready before the server starts.
+
+The familiar workflow is still there: upload a `.miz`, share the plan, and download a mission with your changes applied. v2 gives your team more ways to build that plan together.
+
+<!-- truncate -->
+
+## Watch the v2 introduction
+
+<div className={styles.videoContainer}>
+  <iframe
+    className={styles.iframe}
+    src="https://www.youtube.com/embed/EV4NhSth9ys"
+    title="Frag Orders v2 introduction"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+</div>
+
+## Plan together
+
+Planning is now a shared workspace, with changes synced between participants as you work. Give several people planning access to the same flight, assign an entire Discord role, or bring in collaborators to help administer a Frag Order. Access stays separate for each coalition, with permissions for editors, flight planners, and drawing editors.
+
+Pilot signups are part of the workspace too. Pilots request specific slots, organizers approve or deny requests, and the roster carries those assignments through to the briefing and kneeboards.
+
+## Coordinate the whole package
+
+The new **Timeline Editor** puts flight plans and shared DTC routes on a common Zulu time axis. Coordinate push times, time on target, refueling, loiter, and vulnerability windows, then check how the flights fit together. Package events give everyone the same timing reference for the brief.
+
+## A new map workspace
+
+The redesigned map brings 2D and 3D views, terrain shading, domed threat rings, an MGRS grid, and more control over individual layers. A new theater tile pipeline provides sharper terrain for mission planning.
+
+Use lines, freehand strokes, rectangles, polygons, circles, and tactical icons to build the picture your pilots need. The **Drawing Library** lets you save those annotations and reuse them in other missions on the same theater, so recurring corridors, threat areas, and control measures don't need to be drawn again.
+
+## Take the plan into the cockpit
+
+**Data Transfer Cartridges** are now part of the planning workflow for the F-16C, F/A-18C, F-14B(U), and AH-64D. Create or upload a cartridge, assign it to a flight or individual aircraft, and send supported map drawings and planned routes into it.
+
+Inspect cartridge data on the map, edit radio presets, choose which sections load into the aircraft, and reuse partitions between cartridges. Route timing can be coordinated in the Timeline, while export previews and capacity warnings help you check what will make it into the cartridge before flying.
+
+## Better briefing material
+
+The redesigned **Mission Data Card** brings the flight roster, waypoint timing, leg distances, and radio presets together. **Route Cards** use the same map engine as the planning workspace, and the new **DTC Route Card** and **DTC Point List** give pilots printable references for their cartridges.
+
+Waypoints, radio presets, laser codes, drawings, cartridges, and enabled kneeboards are carried into the packaged mission download, keeping the cockpit material connected to the plan you briefed.
+
+## Get started with v2
+
+Open [Frag Orders v2](https://v2.fragorders.com) and sign in with Discord to start planning. For a closer look at the features, screenshots, and links to the guides, read **[What's New in v2](/docs/v2/getting-started/whats-new)**.
+
+If you're coming from v1, see the [v1 subscriber migration guide](/docs/v2/reference/v1-subscriber-migration) before moving your subscription.
+
+Thanks to everyone who has tested v2, reported bugs, and helped shape the new workspace. We're looking forward to seeing what you plan with it.
