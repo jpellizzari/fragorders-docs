@@ -22,19 +22,21 @@
   justify-content: center;
 }
 
+.videoSection {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
 .videoContainer {
-  max-width: 1024px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 64px;
+  max-width: 960px;
+  margin: 1.5rem auto 0;
 }
 
 .iframe {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
 }
 
 .textContainer {
@@ -43,11 +45,4 @@
   justify-content: center;
   max-width: 1024px;
   margin: 0 auto;
-}
-
-@media only screen and (min-width: 600px) {
-  .iframe {
-    height: 480px;
-    width: 640px;
-  }
 }

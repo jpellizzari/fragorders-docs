@@ -30,6 +30,16 @@ The leg speeds give you an immediate sanity check. If a flight needs 520 KTS to 
 
 At the top, the **Events** section shows coalition-wide and per-flight markers on a shared row, so you can see the full sequence of key package events — pushes, MEZ penetrations, PET windows, egress — without scanning each flight row individually. Package blocks (e.g. VUL windows) span the full width of all rows, making it immediately clear which flights are inside or outside the window.
 
+## DTC Routes {#dtc-routes}
+
+Routes created with the map's **Route** tool appear as tracks alongside the mission's flight plans. Use them to coordinate DTC route timing with the rest of the package.
+
+Select a route waypoint to open its inspector. With permission to edit the shared route, change **ETA (Z)**, **ALT (FT)**, or **Type**. Changes save when you leave the field and update the same route shown on the map and used for cartridge export. Route times are measured from mission start and displayed as Zulu clock times; they cannot be set before mission start.
+
+A route's first waypoint is a planned point, so it appears on the timeline. Routes are shared planning content rather than flight groups: group planner access alone does not grant route editing, and routes are not offered as flight choices for events.
+
+See [Planning a Route](./dtcs#planning-a-route) for creating routes and assigning cartridge partitions.
+
 ## Adding Events
 
 Events are the primary coordination tool in the timeline. Click **+ Event** in the top-left to open the Add Event dialog.

@@ -10,7 +10,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const config = {
   title: 'Frag Orders Docs',
   tagline: 'Visualize and Plan your Multiplayer DCS World Missions with Frag Orders',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon-frag-box.svg',
 
   // Set the production url of your site here
   url: 'https://docs.fragorders.com/',
@@ -41,14 +41,17 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          lastVersion: 'v1',
+          lastVersion: 'current',
           versions: {
             current: {
               label: 'v2',
               path: 'v2',
+              banner: 'none',
             },
             v1: {
               label: 'v1',
+              path: '',
+              banner: 'unmaintained',
             },
           },
         },
@@ -75,7 +78,8 @@ const config = {
         title: 'Frag Orders Docs',
         logo: {
           alt: 'Frag Orders Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo-frag-box.svg',
+          srcDark: 'img/logo-frag-box-dark.svg',
         },
         items: [
           {
@@ -90,7 +94,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://fragorders.com',
+            href: 'https://v2.fragorders.com',
             label: 'Go to Frag Orders',
             position: 'right',
           },

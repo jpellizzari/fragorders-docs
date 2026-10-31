@@ -16,8 +16,8 @@ Open the **DTC** item in the publish navigation. The left pane lists every cartr
 
 Two kinds of cartridge show up:
 
-- **Mission** cartridges (gray badge) are embedded in the uploaded `.miz` by the mission author. Editors can move supported points and vertices; the first edit saves an uploaded cartridge with the same name, which takes precedence over the mission copy.
-- **Uploaded** cartridges (blue badge) are ones you added through Frag Orders, either by uploading a `.dtc` file or by creating a new one. These are fully editable.
+- **Mission** cartridges (gray badge) are embedded in the uploaded `.miz` by the mission author. The first edit saves a Frag Order copy that takes precedence over the mission copy.
+- **Frag Order** cartridges (blue badge) are ones you uploaded, created, or saved by editing a mission cartridge. Editors can change supported values, import settings, and map points, copy partitions into them, and rename or delete them.
 
 If a mission cartridge and an uploaded cartridge share the same file name, the uploaded one takes precedence and hides the mission copy.
 
@@ -39,7 +39,7 @@ To bring in a cartridge built elsewhere:
 
 1. Drag one or more `.dtc` files anywhere onto the DTC list pane, or click the upload button in the list header.
 2. Frag Orders validates each file. A file that isn't valid DTC JSON is rejected with an error.
-3. The cartridge is saved and appears at the top of the list with an **uploaded** badge.
+3. The cartridge is saved and appears in the list with a blue **frag order** badge.
 
 Re-uploading a file with the same name replaces the previous version.
 
@@ -92,6 +92,7 @@ The inspector splits a cartridge into tabs, and only shows the tabs that actuall
 
 - **Comms** — radio presets
 - **Waypoints** — nav points, with a mini-map
+- **DEST** — F-16 destination points, with their cockpit slot numbers (81 onward), alongside drawings pending export
 - **Threats** — threat points and their rings, with a mini-map
 - **Geo Lines** — lines and shapes drawn on the moving map, with a mini-map
 - **JDAM** — pre-planned aimpoints (F-14B)
@@ -101,11 +102,41 @@ The inspector splits a cartridge into tabs, and only shows the tabs that actuall
 
 The parsers are airframe-aware, so an F-16 cartridge (MPD / ELINT) and an F/A-18 cartridge (WYPT / SA / ALR-67) are each broken down using the right fields.
 
-Every cartridge — mission or uploaded — can be downloaded as a `.dtc` file using the download button in the view header.
+Each mini-map shows only the selected section. The selected cartridge and tab are included in the URL, so you can copy the page link to send another planner to the same view. Switching cartridges keeps the tab selected when the new cartridge has it.
+
+Every cartridge can be downloaded as a `.dtc` file using the download button in the view header. For saved Frag Order cartridges, the download includes the drawings and routes assigned for export, using the same build process as mission packaging. Review any yellow export warnings before flying: they identify items left out of the cartridge. If the build fails, the download falls back to the stored cartridge without those planned additions. An untouched mission cartridge downloads its original contents.
+
+### Import Controls
+
+F-16 and F/A-18 cartridges have import switches for supported sections. Turn on **Import this section** (or the section-specific switch) to load that data into the aircraft. Radio banks have separate import switches.
+
+An off switch means DCS keeps the aircraft's existing settings and ignores that section, even though its points or presets remain visible in the inspector. A yellow **Not imported** badge and a dot on the tab identify disabled sections. This is the inverse of DCS's **Do not upload tab data** checkbox. Other airframes and sections without an import flag show no switch.
+
+### Editing Radio Presets
+
+As an Editor, open **Comms** and change a channel's frequency in MHz, AM/FM modulation, or name where the cartridge supports names. Frequency and name changes save when you leave the field; press Enter to save a frequency. Modulation changes save immediately. A notification confirms success or reports an error.
+
+### Copying Partitions Between Cartridges
+
+Reuse radio presets or other stored cartridge data without replacing the whole destination cartridge:
+
+1. Select the **destination** cartridge.
+2. Click **Copy partition from another DTC** in the inspector header.
+3. Choose a **Source DTC** of the same airframe and a **Partition**.
+4. Where available, select one or more **Sections**, or leave **Entire partition** selected.
+5. Click **Copy partition**.
+
+The selected destination partition or sections are replaced, including their import flags. Other destination data is preserved. Copying uses the source's stored data; it does not copy Frag Orders routes or drawings waiting for export, or change their export targets. Copying into a mission cartridge saves a Frag Order copy.
+
+### Renaming a Cartridge
+
+Click **Rename DTC file** in the inspector header, enter a file name, and click **Rename**. The `.dtc` extension is added automatically. Use a unique name without directories or colons.
+
+Flight assignments and drawing and route export targets follow the new name, so you do not need to reassign them. Renaming a mission cartridge saves a Frag Order copy and updates its references in packaged downloads. The original uploaded mission remains unchanged.
 
 ## Sending Map Content to a Cartridge
 
-Beyond what a cartridge already holds, Frag Orders can inject your **map drawings** and **flight routes** into it on export. These appear as extra preview tabs at the top of the DTC inspector — each with a mini-map — so you can verify exactly what will be written before packaging.
+Beyond what a cartridge already holds, Frag Orders can inject your **map drawings** and **flight routes** into it on export. Review them in the inspector before packaging: routes and some drawing types have separate preview tabs, while pending F-16 destinations and geo lines appear alongside stored data in **DEST** and **Geo Lines**.
 
 Two rules apply to every drawing you export:
 
@@ -127,16 +158,20 @@ Selections save immediately — there is no separate confirm step.
 
 | Draw this | It exports as | Where it lands |
 | --- | --- | --- |
-| **Line** or **polygon** | Geo Line | Cartridge geo-line slots (**L1–L4**) |
+| **Line** or **Freehand** | Geo Line / plot line / TSD line | **F-16:** L1–L4 · **F/A-18:** SA line data · **F-14B(U):** Plot Lines (Plan 1) · **AH-64D:** TSD Line |
+| **Polygon** or **Rectangle** | Geo Line / plot line / area or zone | **F-16:** L1–L4 · **F/A-18:** SA area data · **F-14B(U):** Plot Lines (Plan 1) · **AH-64D:** Area, Priority Fire Zone, or No-Fire Zone |
 | **Circle** | Threat ring | F-16 threat points / F/A-18 MEZ |
-| **Point** | Standalone point | **F-16:** DEST destination · **F/A-18:** GPS waypoint · **F-14B:** JDAM aimpoint |
-| **Route** (Route tool) | Flight route / steerpoints | Route partitions **R1 / R2 / R3** |
+| **Tactical icon** (point) | Standalone point | **F-16:** DEST destination · **F/A-18:** GPS waypoint · **F-14B(U):** JDAM aimpoint · **AH-64D:** TSD Point, using a WP/HZ/CM/TG label |
+| **Route** (Route tool) | Flight route / steerpoints | **F-16 / F/A-18:** R1–R3 · **F-14B(U):** R2–R12 · **AH-64D:** ten named route partitions |
+| **Ellipse** | No DTC export target | Can be exported to a Miz Layer for the F10 map |
+
+Rectangles are saved as polygons, and freehand strokes are saved as lines, so they offer the same DTC targets as those shapes. Ellipses keep their own shape type and have no cartridge export option. Use **Circle** for a threat ring. Tactical icons export their point location and supported label data, rather than the map's NATO symbol artwork.
 
 ![Line and polygon drawings on the Frag Orders map, ready to export to the DTC](/img/dtc_drawings_map.png)
 
 #### Geo Lines
 
-Lines and polygons land in the cartridge's **Geo Lines** slots and show up on the aircraft's moving map. Each drawing occupies one of the four slots (**L1–L4**); slots already used by the mission author are skipped, so you can add up to four Frag Orders geo lines per cartridge without disturbing existing ones. The drawing's label becomes the note on the first point, and altitude (if set) is carried through in feet.
+Lines, freehand strokes, polygons, and rectangles land in the cartridge's supported line or area data and show up on the aircraft's moving map. The F-16 uses four **L1–L4** slots; occupied slots are skipped. The F/A-18 stores its lines and areas under **SA** (FAOR/FLOT). The F-14B(U) offers **Plot Lines (Plan 1)**. Available slots and vertex limits depend on the airframe, so review the inspector's export warnings before downloading. The drawing's label becomes the note on the first point where supported, and altitude (if set) is carried through in feet. For Apache lines, areas, and fire zones, see [Apache Routes and Shapes](#apache-routes-and-shapes).
 
 #### Threat Rings
 
@@ -148,7 +183,7 @@ A **point** exports as a stand-alone, off-route point: a **DEST** destination on
 
 #### Routes
 
-A **route** drawn with the Route tool exports as a flight route into a cartridge's route partitions (R1 / R2 / R3). See [Planning a Route](#planning-a-route) below.
+A **route** drawn with the Route tool exports into the selected cartridge route partition. The F-16 and F/A-18 offer **R1–R3**; the F-14B(U) offers **R2–R12**, reserving R1 for the Mission Editor route; the Apache uses ten named partitions. See [Planning a Route](#planning-a-route) below.
 
 ## AH-64D Apache
 
@@ -185,15 +220,15 @@ Apache drawing export options depend on the geometry:
 
 | Draw this | Apache export option |
 | --- | --- |
-| Point | Waypoint, Hazard, Control Measure, or Target |
-| Line | Line |
-| Polygon | Area, PFZ, or NFZ |
+| Tactical icon (point) | TSD Point (WP/HZ/CM/TG label) |
+| Line or Freehand | TSD Line |
+| Polygon or Rectangle | Area, Priority Fire Zone (PFZ), or No-Fire Zone (NFZ) |
 
-Circles are not offered as an Apache export type. Polygon closing vertices are normalized when written, so the cartridge does not receive a duplicate final vertex.
+The point's label selects Waypoint, Hazard, Control Measure, or Target as described above. Circles and ellipses have no Apache DTC export target. Polygon closing vertices are normalized when written, so the cartridge does not receive a duplicate final vertex.
 
 ## Planning a Route {#planning-a-route}
 
-Use the dedicated **Route** tool (in the map's drawing toolbar) to build a flight route: a series of numbered waypoints you edit like a flight plan. Routes are always shared with everyone flying the mission, so only **Editors** can create and edit them.
+Use the dedicated **Route** tool (in the map's drawing toolbar) to build a flight route: a series of numbered waypoints you edit like a flight plan. The toolbar enables route creation for **Editors**. Existing shared routes can also be edited with **Drawing Editor** permission; group Planner access alone is not enough.
 
 Select the Route tool and click along the map to drop waypoints; double-click or right-click to finish. Click any waypoint to open its editor:
 
@@ -205,13 +240,15 @@ Select the Route tool and click along the map to drop waypoints; double-click or
 - **Altitude** — MSL. New waypoints start at the ground elevation beneath them, so the value begins sensible.
 - **Add After / Delete** — insert a new waypoint after this one, or remove it.
 
-**Grab and drag** any waypoint to reposition it — the route line follows as you move it.
+Click a waypoint to focus it, then **drag** it to reposition it — the route line follows as you move it. Finish any active drawing or placement operation before selecting other map items.
 
-To send the route to a cartridge, click the **route line** itself and choose a **partition** — **R1**, **R2**, or **R3** — under **Export Partitions**. Each waypoint becomes a steerpoint on that route, waypoints typed **TGT** are flagged as targets, and each waypoint's ToT is written to the cartridge.
+To send the route to a cartridge, click the **route line** itself and choose a **partition** under **Export Partitions**. The choices match the cartridge's airframe: **R1–R3** for the F-16 and F/A-18, **R2–R12** for the F-14B(U), or a named Apache route. Waypoints are written using the airframe's route format, including target flags and ToT where supported.
+
+Route-tool routes also appear alongside flight plans in the **Timeline**. Select a route waypoint there to adjust its Zulu ETA, altitude in feet, or type; changes update the same route used for DTC export. See [DTC Routes on the Timeline](./timeline#dtc-routes).
 
 ## Editing Points on the Map
 
-The Waypoints, Threats, and Geo Lines tabs each render a mini-map for the cartridge. Editors can drag supported points directly:
+The Waypoints, DEST, Threats, and Geo Lines tabs each render a mini-map for that section. Cartridge features also appear on the main planning map, where map search can find DTC navigation points, destinations, threats, lines, and JDAM targets. Editors can drag supported points:
 
 - **Nav points** and **geo-line vertices** can be dragged to a new position.
 - Only existing points move — you can't insert a new vertex partway along a line.
@@ -221,7 +258,9 @@ Each drag re-serializes the entire cartridge and saves it. The map holds the poi
 
 ## In the .miz File
 
-When you download a packaged `.miz` from the Publish page, every uploaded cartridge — plus all the drawings and routes you targeted at it — is written into the mission's `DTC/` directory, so pilots find them in the in-cockpit DTC menu. Mission-embedded cartridges are left as the author saved them.
+When you download a packaged `.miz` from the Publish page, saved Frag Order cartridges are written into its `DTC/` directory, replacing their mission copies where applicable. Drawings and routes are then added to their target cartridges, including mission-embedded targets. Pilots find the resulting cartridges in the in-cockpit DTC menu. The original uploaded `.miz` is unchanged.
+
+For printable cockpit references, enable the **DTC Route Card** or **DTC Point List** in [Kneeboards](../kneeboards#dtc-kneeboards).
 
 ![The packaged drawings loaded in the DCS DTC editor and shown on the in-game map](/img/dtc_miz_result.png)
 
@@ -230,7 +269,7 @@ DTC Geo Lines are distinct from the mission's F10-map drawing layers. If you wan
 :::
 
 :::caution
-Only four geo-line slots (L1–L4) exist per cartridge. If existing geo lines plus your Frag Orders drawings exceed four, the extra drawings are skipped during packaging.
+Cartridge capacities depend on the airframe and section. Items that exceed available capacity are left out and reported in export warnings. A route that exceeds its per-route or total navigation-point capacity is omitted whole rather than truncated. Reduce the exported content or use another cartridge, then check the warnings again.
 :::
 
 :::note

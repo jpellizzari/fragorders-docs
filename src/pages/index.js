@@ -17,7 +17,7 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link to="/docs/intro" className="button button--secondary button--lg">
+          <Link to="/docs/v2/getting-started/intro" className="button button--secondary button--lg">
             Get Started
           </Link>
         </div>
@@ -34,6 +34,18 @@ export default function Home() {
       description="Documentation for Frag Orders">
       <HomepageHeader />
       <main>
+        <section className={styles.videoSection} aria-labelledby="v2-introduction">
+          <Heading as="h2" id="v2-introduction">Introducing Frag Orders v2</Heading>
+          <div className={styles.videoContainer}>
+            <iframe
+              className={styles.iframe}
+              src="https://www.youtube.com/embed/EV4NhSth9ys"
+              title="Frag Orders v2 introduction"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </section>
         <div className={styles.textContainer}>
           <Box m={1} marginBottom={4}>
 
@@ -84,25 +96,11 @@ export default function Home() {
         </div>
         <Box m={4}>
           <div style={{ textAlign: 'center' }}>
-            <h2>Video Tutorial</h2>
-          </div>
-          <div className={styles.videoContainer}>
-            <iframe
-              className={styles.iframe}
-              src="https://www.youtube.com/embed/GquZeyn8qJs"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-        </Box>
-        <Box m={4}>
-          <div style={{ textAlign: 'center' }}>
             <h2>Pricing</h2>
           </div>
           <div className={styles.textContainer}>
             <div style={{ textAlign: 'center' }}>
-              <span style={{ fontSize: 24, fontWeight: 600 }}><a href="/docs/pricing">View pricing information</a></span>
+              <span style={{ fontSize: 24, fontWeight: 600 }}><Link to="/docs/v2/reference/pricing">View pricing information</Link></span>
             </div>
           </div>
 
