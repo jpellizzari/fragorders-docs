@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Drawing Tools & Symbols
 
-The drawing toolbar at the bottom of the map lets editors and authorized planners annotate the map with shapes, lines, and military symbols. Drawings are shared across everyone who can view the publish.
+Use the drawing toolbar at the bottom of the map to add shapes, lines, text, and military symbols. Drawings can be personal or shared with everyone who can view the publish.
 
 ## Who Can Draw
 
-Any user with the **Editor** role can draw. Users without editor rights can be granted drawing access individually via the [Drawing Access Rules](../creating-a-frag-order/managing-access#drawing-access-rules) in the Access tab.
+Editors can add shared drawings. Other users can be granted shared drawing access via the [Drawing Access Rules](../creating-a-frag-order/managing-access#drawing-access-rules) in the Access tab. New shapes, symbols, and text start on your **Personal** layer; switch to **Shared** in the drawing details when you want others to see them.
 
 ## Drawing Tool Toolbar
 
@@ -23,6 +23,7 @@ The toolbar at the bottom of the map contains the following tools:
 | **Circle** | Draw a circle (drag from center) |
 | **Polygon** | Draw a free-form closed polygon |
 | **Symbol / Icon** | Place a military unit symbol marker |
+| **Text** | Place a text annotation with multiline content, size, outline, and rotation |
 | **Freehand** | Draw a freehand line |
 | **Eraser** | Delete a drawing by clicking it |
 
@@ -47,6 +48,16 @@ Click any existing drawing to open its details popover. From here you can:
 The popover also shows the centroid coordinates in both decimal degrees and MGRS.
 
 The **Route** tool plans a flight route of numbered waypoints and writes it into an aircraft's Data Transfer Cartridge — see [Planning a Route](../planning/dtcs#planning-a-route).
+
+## Text Annotations
+
+1. Select **Text** in the drawing toolbar and click the map to place an annotation.
+2. Select it and replace **Text** with your content. You can enter multiple lines; changes save when you leave the field.
+3. Set **Size (px)**, **Outline (px)**, and **Angle (°)**. An outline of `0` removes the text-box border; positive angles rotate clockwise. **Stroke** sets the text color and **Fill** sets the background.
+
+Text stays the same display size as you zoom in either the 2D or 3D map. Move an annotation with the selection tool, or save it in the [Drawing Library](drawing-library) to reuse its content and styling.
+
+To include text on the DCS F10 map, make the drawing **Shared** and choose a **Miz Layer** under **Export Targets**. Packaged missions contain native DCS text boxes with the annotation's styling. Text has no DTC export target.
 
 ## Military Symbols (Icons)
 
