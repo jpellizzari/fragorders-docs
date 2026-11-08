@@ -95,6 +95,7 @@ The inspector splits a cartridge into tabs, and only shows the tabs that actuall
 - **DEST** — F-16 destination points, with their cockpit slot numbers (81 onward), alongside drawings pending export
 - **Threats** — threat points and their rings, with a mini-map
 - **Geo Lines** — lines and shapes drawn on the moving map, with a mini-map
+- **CAP & Corridors** — Hornet CAP tracks and corridors already in the cartridge, plus drawings pending export
 - **JDAM** — pre-planned aimpoints (F-14B)
 - **RWR** — radar-warning receiver programming
 - **Countermeasures** — chaff/flare programs
@@ -160,10 +161,13 @@ Selections save immediately — there is no separate confirm step.
 | --- | --- | --- |
 | **Line** or **Freehand** | Geo Line / plot line / TSD line | **F-16:** L1–L4 · **F/A-18:** SA line data · **F-14B(U):** Plot Lines (Plan 1) · **AH-64D:** TSD Line |
 | **Polygon** or **Rectangle** | Geo Line / plot line / area or zone | **F-16:** L1–L4 · **F/A-18:** SA area data · **F-14B(U):** Plot Lines (Plan 1) · **AH-64D:** Area, Priority Fire Zone, or No-Fire Zone |
+| **Line**, exactly two vertices | CAP Track | **F/A-18:** SA CAP tracks |
+| **Line**, two to fourteen vertices | Corridor | **F/A-18:** SA corridors |
 | **Circle** | Threat ring | F-16 threat points / F/A-18 MEZ |
 | **Tactical icon** (point) | Standalone point | **F-16:** DEST destination · **F/A-18:** GPS waypoint · **F-14B(U):** JDAM aimpoint · **AH-64D:** TSD Point, using a WP/HZ/CM/TG label |
 | **Route** (Route tool) | Flight route / steerpoints | **F-16 / F/A-18:** R1–R3 · **F-14B(U):** R2–R12 · **AH-64D:** ten named route partitions |
 | **Ellipse** | No DTC export target | Can be exported to a Miz Layer for the F10 map |
+| **Text** | No DTC export target | Native DCS text box when exported to a Miz Layer |
 
 Rectangles are saved as polygons, and freehand strokes are saved as lines, so they offer the same DTC targets as those shapes. Ellipses keep their own shape type and have no cartridge export option. Use **Circle** for a threat ring. Tactical icons export their point location and supported label data, rather than the map's NATO symbol artwork.
 
@@ -172,6 +176,21 @@ Rectangles are saved as polygons, and freehand strokes are saved as lines, so th
 #### Geo Lines
 
 Lines, freehand strokes, polygons, and rectangles land in the cartridge's supported line or area data and show up on the aircraft's moving map. The F-16 uses four **L1–L4** slots; occupied slots are skipped. The F/A-18 stores its lines and areas under **SA** (FAOR/FLOT). The F-14B(U) offers **Plot Lines (Plan 1)**. Available slots and vertex limits depend on the airframe, so review the inspector's export warnings before downloading. The drawing's label becomes the note on the first point where supported, and altitude (if set) is carried through in feet. For Apache lines, areas, and fire zones, see [Apache Routes and Shapes](#apache-routes-and-shapes).
+
+#### Hornet CAP Tracks and Corridors
+
+CAP tracks and corridors from a Hornet cartridge appear on the planning map. Open **CAP & Corridors** in its DTC inspector to review stored entries alongside drawings marked **Pending export**.
+
+To add one:
+
+1. Use the **Line** drawing tool. A **CAP Track** needs exactly two vertices; a **Corridor** needs two to fourteen.
+2. Set the drawing to **Shared** and open **Export Targets**.
+3. Under the Hornet cartridge, select **CAP Track** or **Corridor**.
+4. For a CAP track, set **Diameter (NM)** and **Turn direction** in the drawing details.
+
+For CAP tracks, the first vertex is the anchor and the second determines the leg length and inbound course. The default diameter is **5 NM**, with **Left** turns. Corridors are **10 NM wide**, centered on the drawn line.
+
+Review the preview before packaging the mission or downloading a saved Frag Order cartridge. Existing cartridge data is preserved. A Hornet cartridge holds up to **nine CAP tracks** and **seven corridors**, including entries already present; invalid or over-capacity additions are left out and reported in export warnings.
 
 #### Threat Rings
 

@@ -16,9 +16,11 @@ Give the set a name and save it.
 
 ![Drawing library dialog with a set name field and saved sets list](/img/drawset_modal.png)
 
-Saving captures **every drawing currently visible to you** on the mission — both your personal drawings and the shared drawings for the coalition. Each saved set is tied to the mission's theater, because drawing coordinates are theater-specific.
+Saving captures **every planning drawing you can access** on the mission — both your personal drawings and the shared drawings for the coalition. Hiding a drawing with your personal visibility controls does not exclude it from the saved set. Each saved set is tied to the mission's theater, because drawing coordinates are theater-specific.
 
 Saving to a name that already exists **replaces** that set's contents with the current drawings.
+
+Sets preserve text content, size, outline, and rotation, along with CAP track diameter and turn direction. Imported drawings keep those settings.
 
 ## Importing a Set
 
@@ -37,7 +39,7 @@ This means you can safely:
 
 After an import you'll see how many drawings were added and how many were skipped because they were already there.
 
-Two drawings are treated as identical when their shape and styling match: label, geometry, points, radius, altitude, arrows, stroke, and fill. Export-target settings are ignored for this comparison. Change any of the matched properties — for example, nudge a point or rename the drawing — and it's treated as a new drawing.
+Two drawings are treated as identical when their shape and styling match: label, geometry, points, radius, altitude, arrows, stroke, fill, military symbol, text styling, and CAP settings. Export-target settings are ignored for this comparison. Change a matched property — for example, nudge a point, rotate text, or change a CAP diameter — and it's treated as a new drawing.
 
 ## Managing Sets
 
